@@ -17,11 +17,11 @@ const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json());
 app.use("/api/products" ,router);
-app.use(cors({
-    origin: 'http://localhost:5173', // Allow your frontend's port
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-}));
+// app.use(cors({
+//     origin: 'http://localhost:5173', // Allow your frontend's port
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+//     allowedHeaders: ['Content-Type'],
+// }));
 
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname,"/frontend/dist")));
