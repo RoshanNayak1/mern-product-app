@@ -7,7 +7,7 @@ backend/node_modules/
 backend/.env
 
 # Ignore build files
-frontend/dist/
+# frontend/dist/
 backend/dist/
 
 # Ignore logs and cache
