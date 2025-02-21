@@ -4,9 +4,9 @@ import { connectDB } from "./config/db.js";
 import router from "./routes/product.route.js";
 import cors from "cors";
 import path from "path";
-import { fileURLToPath } from "url"; // Fix for __dirname
+import { fileURLToPath } from "url";
 
-// Manually define __dirname for ES Modules
+// Fix __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -23,9 +23,10 @@ app.use("/api/products", router);
 
 // Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontEnd/dist")));
+  const frontendPath = path.resolve(__dirname, "../frontEnd/dist"); // Correct path
+  app.use(express.static(frontendPath));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontEnd", "dist", "index.html"));
+    res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
 
@@ -34,4 +35,3 @@ app.listen(PORT, async () => {
   await connectDB();
   console.log(`Server started at http://localhost:${PORT}`);
 });
-
